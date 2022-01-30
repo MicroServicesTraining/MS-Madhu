@@ -5,7 +5,6 @@ package com.ofs.sms.ss.service;
 
 import java.util.List;
 
-import com.ofs.sms.ss.entities.Student;
 import com.ofs.sms.ss.exceptions.InvalidInputException;
 import com.ofs.sms.ss.vo.StudentVO;
 
@@ -24,5 +23,9 @@ public interface StudentService {
 	StudentVO modifyStudent(StudentVO studentVO);
 
 	StudentVO removeStudent(Long rollNo);
+
+	List<StudentVO> getStudentsByFee(Double fee) throws InvalidInputException;
+
+	List<StudentVO> getStudentsByFeeRange(Double minfee, Double maxfee) throws InvalidInputException;
 
 }

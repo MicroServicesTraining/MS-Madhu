@@ -68,4 +68,24 @@ public class StudentDaoImpl implements StudentDao{
 		}
 	}
 
+	@Override
+	public List<Student> getStudentsByFee(Double fee) {
+		Optional<List<Student>> result = studentRepository.getStudentsByFee(fee);
+		if(result.isPresent()) {
+			return result.get();
+		}else {
+			return null;
+		}
+	}
+
+	@Override
+	public List<Student> getStudentsByFeeRange(Double minfee, Double maxfee) {
+		Optional<List<Student>> result = studentRepository.getStudentsByFeeRange(minfee, maxfee);
+		if(result.isPresent()) {
+			return result.get();
+		}else {
+			return null;
+		}
+	}
+
 }

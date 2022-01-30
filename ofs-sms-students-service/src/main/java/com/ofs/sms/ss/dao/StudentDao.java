@@ -23,4 +23,8 @@ public interface StudentDao {
 
 	Student removeStudent(Long rollNo);
 
+	List<Student> getStudentsByFee(Double fee);
+
+	List<Student> getStudentsByFeeRange(Double minfee, Double maxfee);
+
 }
