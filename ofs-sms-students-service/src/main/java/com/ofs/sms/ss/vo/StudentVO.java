@@ -6,7 +6,7 @@ package com.ofs.sms.ss.vo;
 import java.io.Serializable;
 
 /**
- * @author USER
+ * @author Sekhar
  *
  */
 public class StudentVO implements Serializable{
