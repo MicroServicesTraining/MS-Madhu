@@ -9,5 +9,6 @@
 <body>
 <h1>Home Page</h1>
 <a href="../public/api/v1/students">Students List</a>
+<a href="../public/api/v1/students/new">New Student</a>
 </body>
 </html>
