@@ -40,8 +40,11 @@ public class StudentsController {
 	}
 	
 	@PostMapping
-	public StudentMgmtResponse<StudentVO> saveStudent(HttpServletRequest request){
-		return null;
+	public ModelAndView saveStudent(HttpServletRequest request){
+		StudentMgmtResponse<StudentVO> studentMgmtResponse =  studentService.saveStudent(request);
+		ModelAndView modelAndView =  new ModelAndView("studentcreatesuccess");
+		modelAndView.addObject("studentMgmtResponse", studentMgmtResponse);
+		return modelAndView;
 	}
 
 	
