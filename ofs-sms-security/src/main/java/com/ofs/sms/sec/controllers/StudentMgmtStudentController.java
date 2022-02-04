@@ -12,15 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
  *
  */
 @RestController
-@RequestMapping("/")
-public class StudentMgmtSecurityController {
-
+@RequestMapping("/students")
+public class StudentMgmtStudentController {
 	@GetMapping
-	public String sayHello() {
-		return "<h1>Welcome User</h1>"
-				+ "<a href='./admins'>Admins</a><br />"
-				+ "<a href='./teachers'>Teachers</a><br />"
-				+ "<a href='./students'>Students</a><br />";
+	public String getStudentHome() {
+		return "<h1>Welcome Student</h>";
 	}
-	
 }
