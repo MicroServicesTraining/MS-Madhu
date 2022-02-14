@@ -21,4 +21,14 @@ public class StudentMgmtAdminController {
 				+ "<a href='./teachers'>Teachers</a><br />"
 				+ "<a href='./students'>Students</a><br />";
 	}
+	
+	@GetMapping("/teachers")
+	public String getTeachersList() {
+		return "<h1> Teachers List for Admin</h1>";
+	}
+	
+	@GetMapping("/students")
+	public String getStudentsList() {
+		return "<h1> Students List for Admin</h1>";
+	}
 }

@@ -14,9 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class IndexPageController {
 
-	@GetMapping({"/", "/index"})
+	@GetMapping({ "/", "/index" })
 	public ModelAndView getIndexPage() {
 		return new ModelAndView("index");
 	}
-	
+
+	@GetMapping("/home")
+	public ModelAndView validateLogin() {
+		return new ModelAndView("/homepage");
+	}
 }

@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -26,9 +27,9 @@ public class StudentMgmtSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.inMemoryAuthentication()
-			.withUser("sekhar").password("1234").roles("ADMIN", "TEACHER", "STUDENT")
-			.and().withUser("babu").password("abcd").roles("STUDENT")
-			.and().withUser("kiran").password("abcd").roles("TEACHER");
+			.withUser("sekhar").password("{bcrypt}$2a$10$cNSJOH/IdBugXs6b1WeLd.pqeVR9gzw7rN4RCtk7Zl7xTGI/KUrkm").roles("ADMIN", "TEACHER", "STUDENT")
+			.and().withUser("babu").password("{pbkdf2}ff2327363394ed76c29fe232eea29a9133e21314f7fb613133e30cd0434e9d9c8533de0d1da7af66").roles("STUDENT")
+			.and().withUser("kiran").password("{sha256}f5821c502db109775c6355c30337c58e24f128a19515ab4719e332ad4b471f49348ef78dae3aebee").roles("TEACHER");
 	}
 
 	/* (non-Javadoc)
@@ -36,7 +37,9 @@ public class StudentMgmtSecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests().antMatchers("/admins").hasRole("ADMIN")
+		http.authorizeHttpRequests().antMatchers("/admins/**").hasRole("ADMIN")
+		//.antMatchers("/admins/teachers").hasRole("ADMIN")
+		//.antMatchers("/admins/students").hasRole("ADMIN")
 			.antMatchers("/teachers").hasRole("TEACHER")
 			//.antMatchers("/teachers").hasAnyRole("TEACHER", "ADMIN")
 			//.antMatchers("/students").hasRole("STUDENT")
@@ -47,7 +50,8 @@ public class StudentMgmtSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Bean
 	public PasswordEncoder getPasswordEncoder() {
-		return NoOpPasswordEncoder.getInstance();
+		//return NoOpPasswordEncoder.getInstance();
+		return new BCryptPasswordEncoder();
 	}
 
 }

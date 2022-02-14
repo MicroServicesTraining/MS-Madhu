@@ -7,9 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Home Page</h1>
-<a href="../public/api/v1/students">Students List</a>
-<a href="../public/api/v1/students/new">New Student</a>
-
+	<h1>Welcome User Home</h1>
+	<h2>User Home Page</h2>
 </body>
 </html>
