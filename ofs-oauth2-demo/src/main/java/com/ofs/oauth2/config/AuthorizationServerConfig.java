@@ -26,8 +26,5 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		.authorizedGrantTypes("authorization_code")
 		.scopes("read").authorities("CLIENT")
 		.redirectUris("http://localhost:8080/employees/all");
-	}
-
-	
-	
+	}	
 }
