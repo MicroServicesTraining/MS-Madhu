@@ -10,6 +10,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 
 import com.ofs.sms.ss.dao.StudentDao;
 import com.ofs.sms.ss.entities.Student;
@@ -98,6 +100,34 @@ public class StudentServiceImpl implements StudentService{
 	@Override
 	public StudentVO removeStudent(Long rollNo) {
 		Student student = studentDao.removeStudent(rollNo);
+		return convertEntityToVO(student);
+	}
+
+	@Override
+	public StudentVO getStudentByName(String name) throws InvalidInputException {
+		//if(name != null && name.length() > 0) {
+		if(ObjectUtils.isEmpty(name)) {
+			throw new InvalidInputException("Entered Name can not be Null or Empty");
+		}
+		Student student = studentDao.getStudentByName(name);
+		return convertEntityToVO(student);
+	}
+
+	@Override
+	public StudentVO getStudentByCourse(Long courseId) throws InvalidInputException {
+		if(ObjectUtils.isEmpty(courseId) || courseId < 1) {
+			throw new InvalidInputException("Entered CourseId is invalid");
+		}
+		Student student = studentDao.getStudentByCourse(courseId);
+		return convertEntityToVO(student);
+	}
+	
+	@Override
+	public StudentVO getStudentByFee(Double fee) throws InvalidInputException {
+		if(ObjectUtils.isEmpty(fee) || fee < 1) {
+			throw new InvalidInputException("Entered invalid fee amount");
+		}
+		Student student = studentDao.getStudentByFee(fee);
 		return convertEntityToVO(student);
 	}
 

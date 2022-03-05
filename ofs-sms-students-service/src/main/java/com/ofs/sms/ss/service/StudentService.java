@@ -25,4 +25,10 @@ public interface StudentService {
 
 	StudentVO removeStudent(Long rollNo);
 
+	StudentVO getStudentByName(String name) throws InvalidInputException;
+
+	StudentVO getStudentByCourse(Long courseId) throws InvalidInputException;
+
+	StudentVO getStudentByFee(Double fee) throws InvalidInputException;
+
 }

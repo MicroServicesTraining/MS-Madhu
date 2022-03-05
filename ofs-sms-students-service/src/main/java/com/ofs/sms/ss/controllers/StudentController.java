@@ -58,6 +58,43 @@ public class StudentController {
 		return response;
 	}
 	
+	@GetMapping("/name/{name}")
+	public StudentMgmtResponse<StudentVO> getStudentByName(@PathVariable(name = "name") String name) throws InvalidInputException {
+		StudentVO studentVO = studentService.getStudentByName(name);
+		StudentMgmtResponse<StudentVO> response = null;
+		if(studentVO != null) {
+			response = new StudentMgmtResponse<StudentVO>(null, null, studentVO);
+		}else {
+			response = new StudentMgmtResponse<StudentVO>("No Student found with given Name", HttpStatus.NOT_FOUND.value(), studentVO);
+		}
+		return response;
+	}
+	
+	@GetMapping("/courseid/{courseid}")
+	public StudentMgmtResponse<StudentVO> getStudentByCourse(@PathVariable(name = "courseid") Long courseId) throws InvalidInputException {
+		StudentVO studentVO = studentService.getStudentByCourse(courseId);
+		StudentMgmtResponse<StudentVO> response = null;
+		if(studentVO != null) {
+			response = new StudentMgmtResponse<StudentVO>(null, null, studentVO);
+		}else {
+			response = new StudentMgmtResponse<StudentVO>("No Student found in given Course", HttpStatus.NOT_FOUND.value(), studentVO);
+		}
+		return response;
+	}
+	
+	
+	@GetMapping("/fee/{fee}")
+	public StudentMgmtResponse<StudentVO> getStudentByFee(@PathVariable Double fee) throws InvalidInputException {
+		StudentVO studentVO = studentService.getStudentByFee(fee);
+		StudentMgmtResponse<StudentVO> response = null;
+		if(studentVO != null) {
+			response = new StudentMgmtResponse<StudentVO>(null, null, studentVO);
+		}else {
+			response = new StudentMgmtResponse<StudentVO>("Given fee is invalid", HttpStatus.NOT_FOUND.value(), studentVO);
+		}
+		return response;
+	}
+	
 	@PostMapping
 	public StudentMgmtResponse<StudentVO> addStudent(@RequestBody StudentVO studentVO) {
 		StudentVO st = studentService.addStudent(studentVO);		
