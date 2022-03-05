@@ -80,6 +80,12 @@ public class StudentDaoImpl implements StudentDao{
 	@Override
 	public Student getStudentByCourse(Long courseId) {
 		Optional<Student> result = studentRepository.findByCourseId(courseId); //select * from student where course_id = 1;
+		}
+	}
+
+	@Override
+	public List<Student> getStudentsByFeeRange(Double minfee, Double maxfee) {
+		Optional<List<Student>> result = studentRepository.getStudentsByFeeRange(minfee, maxfee);
 		if(result.isPresent()) {
 			return result.get();
 		}else {
@@ -95,6 +101,7 @@ public class StudentDaoImpl implements StudentDao{
 		}else {
 			return null;
 		}	
+		}
 	}
 
 }
