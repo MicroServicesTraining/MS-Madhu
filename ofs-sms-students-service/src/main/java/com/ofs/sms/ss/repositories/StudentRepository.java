@@ -35,6 +35,10 @@ public interface StudentRepository extends JpaRepository<Student, Long>{
 	//@Query(value="select * from students  where fee > :fee", nativeQuery = true) // named parameters
 	//Optional<List<Student>> getStudentsByFee(@Param(value = "fee") Double fee);
 
+	Optional<Student> findByName(String name);
+	Optional<Student> findByFee(Double fee);
+	Optional<Student> findByCourseId(Long courseId);
+
 	//@Query(value="select s.* from students s where s.fee > ?1 and s.fee < ?2", nativeQuery = true) //-- Positional Parameters
 	//@Query(value="select s.* from students s where s.fee > :minfee and s.fee < :maxfee", nativeQuery = true) // Named parameters
 	//Optional<List<Student>> getStudentsByFeeRange(@Param(value = "minfee") Double minfee, @Param(value = "maxfee") Double maxfee);

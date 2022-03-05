@@ -40,8 +40,7 @@ public class StudentDaoImpl implements StudentDao{
 			return result.get();
 		}else {
 			return null;
-		}
-		
+		}		
 	}
 
 	@Override
@@ -69,12 +68,18 @@ public class StudentDaoImpl implements StudentDao{
 	}
 
 	@Override
-	public List<Student> getStudentsByFee(Double fee) {
-		Optional<List<Student>> result = studentRepository.getStudentsByFee(fee);
+	public Student getStudentByName(String name) {
+		Optional<Student> result = studentRepository.findByName(name);//select * from student where name = 'Ravi';
 		if(result.isPresent()) {
 			return result.get();
 		}else {
 			return null;
+		}	
+	}
+
+	@Override
+	public Student getStudentByCourse(Long courseId) {
+		Optional<Student> result = studentRepository.findByCourseId(courseId); //select * from student where course_id = 1;
 		}
 	}
 
@@ -85,6 +90,17 @@ public class StudentDaoImpl implements StudentDao{
 			return result.get();
 		}else {
 			return null;
+		}	
+	}
+	
+	@Override
+	public Student getStudentByFee(Double fee) {
+		Optional<Student> result = studentRepository.findByFee(fee); //select * from student where fee = 9000;
+		if(result.isPresent()) {
+			return result.get();
+		}else {
+			return null;
+		}	
 		}
 	}
 

@@ -23,8 +23,10 @@ public interface StudentDao {
 
 	Student removeStudent(Long rollNo);
 
-	List<Student> getStudentsByFee(Double fee);
+	Student getStudentByName(String name);
 
-	List<Student> getStudentsByFeeRange(Double minfee, Double maxfee);
+	Student getStudentByCourse(Long courseId);
+
+	Student getStudentByFee(Double fee);
 
 }
